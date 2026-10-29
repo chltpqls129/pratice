@@ -1,0 +1,1035 @@
+:root {
+  --bg: #111613;
+  --bg-soft: #1b211e;
+  --text: #f8f5ef;
+  --muted: #c0bdb4;
+  --accent: #d98763;
+  --accent-hover: #e69a77;
+  --line: rgba(255, 255, 255, 0.2);
+  --content-width: 1240px;
+  --nav-height: 78px;
+  --radius: 22px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 20px);
+}
+
+body {
+  margin: 0;
+  padding-top: var(--nav-height);
+  color: var(--text);
+  background: var(--bg);
+  font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+  line-height: 1.7;
+}
+
+img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+h2 span {
+  color: var(--accent);
+}
+
+section {
+  scroll-margin-top: calc(var(--nav-height) + 18px);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+::selection {
+  color: #fff;
+  background: var(--accent);
+}
+
+/* ========================================
+   1. FIXED NAVIGATION
+======================================== */
+
+.site-header {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background: rgba(17, 22, 19, 0.94);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  width: min(100% - 64px, var(--content-width));
+  height: 100%;
+  margin: 0 auto;
+}
+
+.brand {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.brand::first-letter {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 2.5vw, 34px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  font-size: 0.88rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.nav-cta {
+  flex-shrink: 0;
+  padding: 10px 22px;
+  border-radius: 999px;
+  color: white;
+  background: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: background 0.2s ease;
+}
+
+.nav-cta:hover {
+  background: var(--accent-hover);
+}
+
+/* ========================================
+   2. CINEMATIC HERO
+======================================== */
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(30px, 5vw, 80px);
+  min-height: min(760px, calc(100svh - var(--nav-height)));
+  padding: 75px max(5%, calc((100% - var(--content-width)) / 2));
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(9, 14, 12, 0.84) 0%,
+      rgba(9, 14, 12, 0.62) 42%,
+      rgba(9, 14, 12, 0.28) 100%
+    ),
+    linear-gradient(0deg, rgba(9, 14, 12, 0.62), transparent 40%),
+    url("images/해운대메인.jpg") center 55% / cover no-repeat;
+}
+
+.hero-shade {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 15, 13, 0.16),
+    transparent 40%,
+    rgba(10, 15, 13, 0.28)
+  );
+  pointer-events: none;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 550px;
+  animation: hero-enter 0.8s ease both;
+}
+
+.eyebrow {
+  margin-bottom: 18px;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.19em;
+}
+
+.hero h1 {
+  margin-bottom: 25px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.5rem, 7vw, 6.8rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+}
+
+.hero-description {
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 25px;
+  border-radius: 999px;
+  color: white;
+  background: var(--accent);
+  font-weight: 700;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.primary-button span {
+  font-size: 1.25rem;
+}
+
+.primary-button:hover {
+  transform: translateY(-3px);
+  background: var(--accent-hover);
+}
+
+/* Hero destination cards */
+
+.hero-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(14px, 2vw, 28px);
+  min-width: 0;
+  animation: hero-enter 1s ease 0.15s both;
+}
+
+.hero-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.card-number {
+  display: block;
+  margin-bottom: 13px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.hero-card-link {
+  position: relative;
+  display: block;
+  min-width: 0;
+  height: clamp(250px, 32vw, 390px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+}
+
+.hero-card:nth-child(2) {
+  margin-top: 50px;
+}
+
+.hero-card-link img {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+}
+
+.hero-card-link::after {
+  position: absolute;
+  inset: 35% 0 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.76));
+  content: "";
+}
+
+.hero-card-link:hover img {
+  transform: scale(1.06);
+}
+
+.hero-card-caption {
+  position: absolute;
+  z-index: 1;
+  right: 17px;
+  bottom: 18px;
+  left: 17px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-card-caption strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+}
+
+.hero-card-caption small {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+}
+
+.hero-bottom {
+  position: absolute;
+  right: max(5%, calc((100% - var(--content-width)) / 2));
+  bottom: 20px;
+  left: max(5%, calc((100% - var(--content-width)) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.68rem;
+  letter-spacing: 0.17em;
+}
+
+.hero-bottom a {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: 1.2rem;
+}
+
+/* ========================================
+   3. COMMON CONTENT SECTIONS
+======================================== */
+
+.content-section {
+  padding: 110px 32px;
+  border-bottom: 1px solid var(--line);
+}
+
+.content-section:nth-of-type(even) {
+  background: var(--bg-soft);
+}
+
+.section-heading {
+  width: min(100%, var(--content-width));
+  margin: 0 auto 42px;
+}
+
+.section-heading > p:last-child {
+  max-width: 600px;
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.section-heading h2 {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.section-heading h2 span {
+  font-style: italic;
+}
+
+/* ========================================
+   4. DESTINATIONS + FILTER
+======================================== */
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: min(100%, var(--content-width));
+  margin: 0 auto 30px;
+}
+
+.filter-buttons button {
+  padding: 10px 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  background: transparent;
+  font-size: 0.88rem;
+  transition: all 0.2s ease;
+}
+
+.filter-buttons button:hover,
+.filter-buttons button[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: white;
+  background: var(--accent);
+}
+
+.destination-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  width: min(100%, var(--content-width));
+  margin: 0 auto;
+}
+
+.destination-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.destination-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(217, 135, 99, 0.7);
+}
+
+.destination-card > img {
+  width: 100%;
+  height: clamp(210px, 25vw, 330px);
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.destination-card:hover > img {
+  transform: scale(1.035);
+}
+
+.destination-info {
+  padding: 23px;
+}
+
+.destination-info > span,
+.tip-card > span {
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.destination-info h3 {
+  margin: 10px 0;
+  font-size: 1.45rem;
+}
+
+.destination-info p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+/* ========================================
+   5. LOCAL FOOD
+======================================== */
+
+.food-section {
+  background:
+    radial-gradient(
+      ellipse at 100% 0,
+      rgba(217, 135, 99, 0.09),
+      transparent 45%
+    ),
+    var(--bg);
+}
+
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  width: min(100%, var(--content-width));
+  margin: 0 auto;
+}
+
+.food-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  min-width: 0;
+  padding: 30px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.025);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.food-card:hover {
+  border-color: var(--accent);
+  background: rgba(217, 135, 99, 0.07);
+}
+
+.food-number {
+  color: var(--accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.7rem;
+}
+
+.food-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+}
+
+.food-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ========================================
+   6. DAY TRIP COURSE
+======================================== */
+
+.course-section {
+  background: var(--bg-soft);
+}
+
+.course-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  width: min(100%, var(--content-width));
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  counter-reset: route;
+}
+
+.course-list li {
+  position: relative;
+  min-width: 0;
+  padding: 32px 25px;
+  border-top: 1px solid var(--accent);
+  background: rgba(255, 255, 255, 0.025);
+  counter-increment: route;
+}
+
+.course-list li::before {
+  display: block;
+  margin-bottom: 35px;
+  color: var(--accent);
+  content: "0" counter(route);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2.8rem;
+  line-height: 1;
+}
+
+.course-time {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.course-list h3 {
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+}
+
+.course-list p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+
+.course-note {
+  width: min(100%, var(--content-width));
+  margin: 25px auto 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+/* ========================================
+   7. TRAVEL TIPS
+======================================== */
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  width: min(100%, var(--content-width));
+  margin: 0 auto;
+}
+
+.tip-card {
+  min-width: 0;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.tip-card h3 {
+  margin: 17px 0 12px;
+  font-size: 1.35rem;
+}
+
+.tip-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+
+/* ========================================
+   8. FAQ ACCORDION
+======================================== */
+
+.faq-list {
+  width: min(100%, 900px);
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.faq-item h3 {
+  margin: 0;
+}
+
+.faq-item button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 23px 25px;
+  border: 0;
+  color: var(--text);
+  background: transparent;
+  text-align: left;
+  font-weight: 700;
+}
+
+.faq-item button::after {
+  flex-shrink: 0;
+  color: var(--accent);
+  content: "+";
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.faq-item button[aria-expanded="true"]::after {
+  content: "−";
+}
+
+.faq-item button:hover {
+  background: rgba(217, 135, 99, 0.07);
+}
+
+.faq-item > div {
+  padding: 0 25px 23px;
+}
+
+.faq-item > div p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ========================================
+   9. FOOTER
+======================================== */
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px 25px;
+  padding: 35px max(5%, calc((100% - var(--content-width)) / 2));
+  background: #0b0f0d;
+}
+
+.site-footer > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.site-footer .footer-note {
+  width: 100%;
+  color: #8f938d;
+  letter-spacing: normal;
+}
+
+/* ========================================
+   10. KEYBOARD ACCESSIBILITY
+======================================== */
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--accent-hover);
+  outline-offset: 4px;
+}
+
+/* ========================================
+   11. ENTRANCE ANIMATION
+======================================== */
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   12. TABLET
+======================================== */
+
+@media (max-width: 950px) {
+  .nav-container {
+    width: calc(100% - 36px);
+    gap: 18px;
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 65px 6% 85px;
+  }
+
+  .hero-copy {
+    max-width: 650px;
+  }
+
+  .hero h1 {
+    font-size: clamp(4rem, 9vw, 6rem);
+  }
+
+  .hero-cards {
+    width: min(100%, 680px);
+    margin-left: auto;
+  }
+
+  .hero-card-link {
+    height: 310px;
+  }
+
+  .hero-card:nth-child(2) {
+    margin-top: 35px;
+  }
+
+  .hero-bottom {
+    right: 6%;
+    left: 6%;
+  }
+
+  .food-grid,
+  .course-list,
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .food-card {
+    padding: 24px;
+  }
+
+  .course-list li {
+    padding: 25px;
+  }
+
+  .course-list li::before {
+    margin-bottom: 20px;
+  }
+
+  .destination-card > img {
+    height: 280px;
+  }
+}
+
+/* ========================================
+   13. MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+  :root {
+    --nav-height: 104px;
+    --radius: 17px;
+  }
+
+  body {
+    font-size: 0.94rem;
+  }
+
+  .nav-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px 15px;
+    width: 100%;
+    padding: 9px 12px;
+  }
+
+  .brand {
+    font-size: 1rem;
+  }
+
+  .nav-cta {
+    padding: 6px 13px;
+    font-size: 0.78rem;
+  }
+
+  .nav-links {
+    order: 3;
+    justify-content: center;
+    gap: 5px 17px;
+    width: 100%;
+  }
+
+  .nav-links a {
+    font-size: 0.76rem;
+  }
+
+  .hero {
+    min-height: auto;
+    gap: 35px;
+    padding: 65px 20px 72px;
+    background-position: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.1rem, 14vw, 4.8rem);
+  }
+
+  .hero-description {
+    font-size: 0.94rem;
+  }
+
+  .hero-cards {
+    gap: 12px;
+  }
+
+  .hero-card:nth-child(2) {
+    margin-top: 28px;
+  }
+
+  .card-number {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-card-link {
+    height: 235px;
+    border-radius: 15px;
+  }
+
+  .hero-card-caption {
+    right: 10px;
+    bottom: 12px;
+    left: 10px;
+  }
+
+  .hero-card-caption strong {
+    font-size: 0.95rem;
+  }
+
+  .hero-card-caption small {
+    font-size: 0.55rem;
+    letter-spacing: 0.07em;
+  }
+
+  .hero-bottom {
+    right: 20px;
+    bottom: 15px;
+    left: 20px;
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-bottom a {
+    width: 29px;
+    height: 29px;
+  }
+
+  .content-section {
+    padding: 75px 20px;
+  }
+
+  .section-heading {
+    margin-bottom: 30px;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(2.6rem, 11vw, 3.8rem);
+  }
+
+  .section-heading > p:last-child {
+    font-size: 0.92rem;
+  }
+
+  .filter-buttons {
+    gap: 8px;
+    margin-bottom: 23px;
+  }
+
+  .filter-buttons button {
+    padding: 8px 14px;
+    font-size: 0.82rem;
+  }
+
+  .destination-list {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .destination-card > img {
+    height: 245px;
+  }
+
+  .destination-info {
+    padding: 19px;
+  }
+
+  .food-card {
+    gap: 15px;
+    padding: 22px 18px;
+  }
+
+  .food-number {
+    font-size: 1.45rem;
+  }
+
+  .course-list {
+    gap: 15px;
+  }
+
+  .course-list li {
+    padding: 23px 20px;
+  }
+
+  .course-list li::before {
+    font-size: 2.3rem;
+  }
+
+  .tip-card {
+    padding: 24px 20px;
+  }
+
+  .faq-item button {
+    padding: 19px 17px;
+    font-size: 0.9rem;
+  }
+
+  .faq-item > div {
+    padding: 0 17px 19px;
+  }
+
+  .site-footer {
+    padding: 30px 20px;
+  }
+}
+
+/* 작은 휴대전화 */
+
+@media (max-width: 380px) {
+  .nav-links {
+    gap: 5px 11px;
+  }
+
+  .nav-links a {
+    font-size: 0.7rem;
+  }
+
+  .hero-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-card:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .hero-card-link {
+    height: 260px;
+  }
+
+  .hero h1 {
+    font-size: 2.9rem;
+  }
+}
+
+/* 움직임 최소화 설정 */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
