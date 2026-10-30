@@ -1033,3 +1033,27 @@ button:focus-visible {
     transition: none !important;
   }
 }
+/* 자세히 보기 버튼 */
+.detail-button {
+  background: transparent;
+  color: #d98763;
+  border: 1px solid rgba(217, 135, 99, 0.55);
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.detail-button:hover {
+  background-color: #d98763;
+  color: #171916;
+  border-color: #d98763;
+}
+
+.detail-button:focus-visible {
+  outline: 2px solid #d98763;
+  outline-offset: 3px;
+}
